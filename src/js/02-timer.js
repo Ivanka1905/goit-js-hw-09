@@ -35,16 +35,18 @@ function onStart() {
     let deltaTime = selectedTimeMs - Date.now();
     timerId = setInterval(() => {
         const { days, hours, minutes, seconds } = convertMs(deltaTime);
-            daysElem.textContent = addLeadingZero(days);
-            hoursElem.textContent = addLeadingZero(hours);
-            minutesElem.textContent = addLeadingZero(minutes);
-            secondsElem.textContent = addLeadingZero(seconds);
-            if (deltaTime >= 1000) { deltaTime -= 1000; } else {
+        if (deltaTime >= 1000) { deltaTime -= 1000; } else {
                 clearInterval(timerId);
                 Notiflix.Notify.success('Відлік завершено!')
             }
         }, 1000);
-};    
+};  
+function changeNumbers() {
+    daysElem.textContent = addLeadingZero(days);
+    hoursElem.textContent = addLeadingZero(hours);
+    minutesElem.textContent = addLeadingZero(minutes);
+    secondsElem.textContent = addLeadingZero(seconds);
+}  
 
 function addLeadingZero(value) {
     return String(value).padStart(2, '0')
